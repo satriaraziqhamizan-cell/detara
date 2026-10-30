@@ -1,0 +1,78 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default Deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function getUserData() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+
+    function isUserDocExists() {
+      return exists(/databases/$(database)/documents/users/$(request.auth.uid));
+    }
+
+    function isPetugas() {
+      return isSignedIn() && isUserDocExists() && getUserData().role == 'petugas';
+    }
+
+    function isWarga() {
+      return isSignedIn() && isUserDocExists() && getUserData().role == 'warga';
+    }
+
+    // Users Collection: RBAC profile
+    match /users/{userId} {
+      allow get: if isSignedIn() && (request.auth.uid == userId || isPetugas());
+      allow list: if isSignedIn() && isPetugas();
+      // Warga self-registration: only role == 'warga' allowed from client.
+      // Petugas role can only be set from Firebase Console.
+      allow create: if isSignedIn() && request.auth.uid == userId
+                    && isValidId(userId)
+                    && incoming().role == 'warga'
+                    && incoming().id == userId
+                    && incoming().name is string && incoming().name.size() <= 100
+                    && (!('phone' in incoming()) || (incoming().phone is string && incoming().phone.size() <= 30))
+                    && (!('village' in incoming()) || (incoming().village is string && incoming().village.size() <= 100));
+      allow update: if isSignedIn() && request.auth.uid == userId
+                    && incoming().role == existing().role
+                    && incoming().diff(existing()).affectedKeys().hasOnly(['name', 'phone', 'village', 'updatedAt']);
+      allow delete: if isSignedIn() && request.auth.uid == userId;
+    }
+
+    // Reports Collection: Citizens write their own, Petugas can read all & update status
+    match /reports/{reportId} {
+      allow get: if isSignedIn() && (resource.data.userId == request.auth.uid || isPetugas());
+      allow list: if isSignedIn() && (resource.data.userId == request.auth.uid || isPetugas());
+      allow create: if isSignedIn() && isValidId(reportId)
+                    && incoming().userId == request.auth.uid
+                    && incoming().id == reportId
+                    && incoming().condition in ['Aman', 'Asap', 'Api']
+                    && incoming().status in ['Terkirim', 'Terverifikasi']
+                    && incoming().zoneId is string && incoming().zoneId.size() <= 64
+                    && incoming().zoneName is string && incoming().zoneName.size() <= 100
+                    && (!('notes' in incoming()) || (incoming().notes is string && incoming().notes.size() <= 1000));
+      allow update: if isPetugas()
+                    && incoming().diff(existing()).affectedKeys().hasOnly(['status', 'updatedAt', 'verifiedBy', 'verificationNotes'])
+                    && incoming().status in ['Terkirim', 'Terverifikasi', 'Dalam Penanganan', 'Selesai'];
+      allow delete: if false;
+    }
+  }
+}

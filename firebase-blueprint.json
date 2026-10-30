@@ -1,0 +1,49 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User profile with role-based access for Warga or Petugas",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 100 },
+        "phone": { "type": "string", "maxLength": 30 },
+        "village": { "type": "string", "maxLength": 100 },
+        "role": { "type": "string", "enum": ["warga", "petugas"] },
+        "createdAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["id", "name", "role", "createdAt"]
+    },
+    "Report": {
+      "title": "Citizen Fire Report",
+      "description": "Ground report submitted by citizen or verified by personnel",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "userName": { "type": "string", "maxLength": 100 },
+        "userPhone": { "type": "string", "maxLength": 30 },
+        "zoneId": { "type": "string", "maxLength": 64 },
+        "zoneName": { "type": "string", "maxLength": 100 },
+        "condition": { "type": "string", "enum": ["Aman", "Asap", "Api"] },
+        "reporterType": { "type": "string", "enum": ["Warga", "Anggota MPA", "Petani"] },
+        "notes": { "type": "string", "maxLength": 1000 },
+        "photoUrl": { "type": "string", "maxLength": 500000 },
+        "status": { "type": "string", "enum": ["Terkirim", "Terverifikasi", "Dalam Penanganan", "Selesai"] },
+        "coordinates": { "type": "object" },
+        "createdAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["id", "userId", "zoneId", "zoneName", "condition", "status", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Stores user role and profile information"
+    },
+    "/reports/{reportId}": {
+      "schema": "Report",
+      "description": "Stores reports submitted by Warga, accessible and manageable by Petugas"
+    }
+  }
+}
