@@ -110,23 +110,23 @@ export const P4_AnalisisRisiko: React.FC = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-xl md:text-2xl font-extrabold text-slate-900  flex items-center gap-2">
+          <h1 className="text-xl md:text-2xl font-extrabold text-slate-900 flex items-center gap-2">
             <Brain className="w-6 h-6 text-emerald-600" />
             <span>Mesin Analitik & Verifikasi Berlapis (Edge AI)</span>
           </h1>
-          <p className="text-xs text-slate-500 ">
+          <p className="text-sm text-slate-500">
             Inti Inovasi YESC 2026: Menggabungkan Indeks Risiko Karhutla dengan Skor Kepercayaan Data (Trust Score)
           </p>
         </div>
 
         {/* Tab Controls */}
-        <div className="flex items-center gap-1 bg-white  p-1 rounded-2xl border border-slate-200 ">
+        <div className="flex items-center gap-1 bg-white p-1 rounded-2xl border border-slate-200">
           <button
             onClick={() => setActiveTab('matrix')}
             className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition ${
               activeTab === 'matrix'
-                ? 'bg-emerald-600 text-white shadow-sm'
-                : 'text-slate-600  hover:bg-slate-100'
+                ? 'bg-emerald-700 text-white shadow-sm'
+                : 'text-slate-600 hover:bg-slate-100'
             }`}
           >
             Matriks Risk × Confidence
@@ -135,8 +135,8 @@ export const P4_AnalisisRisiko: React.FC = () => {
             onClick={() => setActiveTab('formula')}
             className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition ${
               activeTab === 'formula'
-                ? 'bg-emerald-600 text-white shadow-sm'
-                : 'text-slate-600  hover:bg-slate-100'
+                ? 'bg-emerald-700 text-white shadow-sm'
+                : 'text-slate-600 hover:bg-slate-100'
             }`}
           >
             Rumus Skor & Bobot
@@ -146,25 +146,25 @@ export const P4_AnalisisRisiko: React.FC = () => {
 
       {activeTab === 'matrix' && (
         <div className="space-y-6">
-          {/* Scientific Concept Explainer Box */}
-          <div className="bg-gradient-to-r from-emerald-950 via-slate-900 to-teal-950 text-white p-6 rounded-3xl border border-emerald-800/40 shadow-xl space-y-3">
-            <div className="flex items-center gap-2 text-xs font-bold text-emerald-400 uppercase tracking-widest">
-              <Sparkles className="w-4 h-4" />
+          {/* Scientific Concept Explainer Box in Light Emerald Theme */}
+          <div className="bg-emerald-50 text-slate-800 p-6 rounded-3xl border border-emerald-200 shadow-sm space-y-3">
+            <div className="flex items-center gap-2 text-xs font-bold text-emerald-800 uppercase tracking-widest">
+              <Sparkles className="w-4 h-4 text-emerald-700" />
               <span>Gagasan Inti & Pembeda dari Sistem Konvensional:</span>
             </div>
-            <p className="text-xs md:text-sm text-slate-200 leading-relaxed max-w-4xl">
+            <p className="text-sm text-slate-700 leading-relaxed max-w-4xl">
               Pada sistem tradisional, lonjakan suhu sesaat pada satu sensor langsung memicu alarm palsu (false alarm) yang melelahkan petugas. <strong>DETARA</strong> menerapkan verifikasi berlapis: status tindakan dihitung dari perkalian silang <strong>Risk Index</strong> (tingkat bahaya fisik) dengan <strong>Trust Score</strong> (tingkat keyakinan data berdasarkan konsistensi antarnode, tren waktu, validasi satelit, dan laporan warga MPA).
             </p>
           </div>
 
           {/* Interactive 3x3 Grid */}
-          <div className="bg-white  p-6 rounded-3xl border border-slate-200  shadow-sm space-y-4">
+          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-base font-bold text-slate-900 ">
+                <h3 className="text-base font-bold text-slate-900">
                   Matriks Keputusan 3×3 (Risk × Confidence Matrix)
                 </h3>
-                <p className="text-xs text-slate-500">
+                <p className="text-sm text-slate-500">
                   Posisi zona wilayah Jambi terpetakan dinamis sesuai pembacaan sensor dan laporan warga terkini
                 </p>
               </div>
@@ -174,7 +174,7 @@ export const P4_AnalisisRisiko: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {['Trust Rendah (<40%)', 'Trust Sedang (40-69%)', 'Trust Tinggi (≥70%)'].map((colTitle, colIdx) => (
                 <div key={colIdx} className="space-y-3">
-                  <div className="text-center py-2 px-3 bg-slate-100  rounded-xl text-xs font-bold text-slate-700 ">
+                  <div className="text-center py-2 px-3 bg-slate-100 rounded-xl text-xs font-bold text-slate-700">
                     {colTitle}
                   </div>
 
@@ -205,29 +205,29 @@ export const P4_AnalisisRisiko: React.FC = () => {
                           matchingZones.length > 0 ? 'ring-2 ring-emerald-500' : 'opacity-85'
                         }`}
                       >
-                        <div className="flex items-center justify-between text-[11px] font-bold mb-1">
+                        <div className="flex items-center justify-between text-xs font-bold mb-1">
                           <span>{cell.risk} × {cell.trust}</span>
                           {matchingZones.length > 0 && (
-                            <span className="px-2 py-0.5 rounded-full bg-emerald-600 text-white font-mono text-[10px]">
+                            <span className="px-2 py-0.5 rounded-full bg-emerald-700 text-white font-mono text-xs">
                               {matchingZones.length} Zona Aktif
                             </span>
                           )}
                         </div>
 
-                        <h4 className="text-xs font-bold mt-1 leading-snug">{cell.action}</h4>
-                        <p className="text-[10px] mt-1.5 opacity-90 leading-relaxed">
+                        <h4 className="text-sm font-bold mt-1 leading-snug">{cell.action}</h4>
+                        <p className="text-sm mt-1.5 opacity-90 leading-relaxed">
                           {cell.description}
                         </p>
 
                         {/* Badges for zones inside this cell */}
                         {matchingZones.length > 0 && (
-                          <div className="mt-3 pt-2 border-t border-black/10  space-y-1">
-                            <span className="text-[10px] font-bold block">Wilayah saat ini:</span>
+                          <div className="mt-3 pt-2 border-t border-black/10 space-y-1">
+                            <span className="text-xs font-bold block">Wilayah saat ini:</span>
                             {matchingZones.map((z) => (
                               <button
                                 key={z.id}
                                 onClick={() => setSelectedZoneId(z.id)}
-                                className="w-full text-left px-2 py-1 rounded bg-white/70  text-[11px] font-semibold flex items-center justify-between hover:bg-white transition"
+                                className="w-full text-left px-2 py-1.5 rounded bg-white/80 text-xs font-semibold flex items-center justify-between hover:bg-white transition"
                               >
                                 <span>{z.name.split(' ')[0]}</span>
                                 <span className="font-mono">R:{z.riskIndex} | T:{z.trustScore}%</span>
@@ -248,93 +248,93 @@ export const P4_AnalisisRisiko: React.FC = () => {
       {activeTab === 'formula' && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Formula 1: Risk Index */}
-          <div className="bg-white  p-6 rounded-3xl border border-slate-200  shadow-sm space-y-4">
+          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-4">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-xl bg-red-100  text-red-600 flex items-center justify-center font-bold">
+              <div className="w-8 h-8 rounded-xl bg-red-100 text-red-600 flex items-center justify-center font-bold">
                 1
               </div>
               <div>
-                <h3 className="text-sm font-bold text-slate-900 ">
+                <h3 className="text-sm font-bold text-slate-900">
                   Formulasi Indeks Risiko Karhutla (Risk Index 0–100)
                 </h3>
-                <span className="text-[11px] text-slate-400">Parameter Fisik Lingkungan Gambut</span>
+                <span className="text-xs text-slate-500">Parameter Fisik Lingkungan Gambut</span>
               </div>
             </div>
 
-            <p className="text-xs text-slate-600  leading-relaxed">
+            <p className="text-sm text-slate-600 leading-relaxed">
               Jumlah berbobot dari 5 parameter sensor lapangan yang dikalibrasi sesuai ambang batas Peraturan Pemerintah No. 57/2016:
             </p>
 
             <div className="space-y-2 text-xs">
-              <div className="flex justify-between p-2.5 rounded-xl bg-slate-50  border border-slate-100 ">
+              <div className="flex justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-200">
                 <span>Kelembapan Tanah Gambut Rendah (&lt;30%)</span>
-                <span className="font-bold font-mono text-emerald-600">Bobot 30%</span>
+                <span className="font-bold font-mono text-emerald-700">Bobot 30%</span>
               </div>
-              <div className="flex justify-between p-2.5 rounded-xl bg-slate-50  border border-slate-100 ">
+              <div className="flex justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-200">
                 <span>Penurunan Muka Air Tanah (&lt; -40 cm batas PP 57)</span>
-                <span className="font-bold font-mono text-cyan-600">Bobot 25%</span>
+                <span className="font-bold font-mono text-cyan-700">Bobot 25%</span>
               </div>
-              <div className="flex justify-between p-2.5 rounded-xl bg-slate-50  border border-slate-100 ">
+              <div className="flex justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-200">
                 <span>Suhu Gambut & Udara Tinggi (&gt; 35°C)</span>
-                <span className="font-bold font-mono text-amber-600">Bobot 20%</span>
+                <span className="font-bold font-mono text-amber-700">Bobot 20%</span>
               </div>
-              <div className="flex justify-between p-2.5 rounded-xl bg-slate-50  border border-slate-100 ">
+              <div className="flex justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-200">
                 <span>Konsentrasi Gas Karbon Monoksida (CO &gt; 2 ppm)</span>
-                <span className="font-bold font-mono text-rose-600">Bobot 15%</span>
+                <span className="font-bold font-mono text-rose-700">Bobot 15%</span>
               </div>
-              <div className="flex justify-between p-2.5 rounded-xl bg-slate-50  border border-slate-100 ">
+              <div className="flex justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-200">
                 <span>Jumlah Hari Kering Tanpa Hujan (BMKG)</span>
-                <span className="font-bold font-mono text-slate-600 ">Bobot 10%</span>
+                <span className="font-bold font-mono text-slate-600">Bobot 10%</span>
               </div>
             </div>
 
-            <div className="p-3 bg-slate-100  rounded-xl text-xs font-mono text-slate-700 ">
+            <div className="p-3 bg-slate-100 rounded-xl text-xs font-mono text-slate-700">
               Risk = (0.30 × S_moist) + (0.25 × S_water) + (0.20 × S_temp) + (0.15 × S_co) + (0.10 × S_dry)
             </div>
           </div>
 
           {/* Formula 2: Trust Score */}
-          <div className="bg-white  p-6 rounded-3xl border border-slate-200  shadow-sm space-y-4">
+          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-4">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-xl bg-emerald-100  text-emerald-600 flex items-center justify-center font-bold">
+              <div className="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">
                 2
               </div>
               <div>
-                <h3 className="text-sm font-bold text-slate-900 ">
+                <h3 className="text-sm font-bold text-slate-900">
                   Formulasi Skor Kepercayaan Data (Trust Score 0–100)
                 </h3>
-                <span className="text-[11px] text-slate-400">Filter Anomali & Verifikasi Silang</span>
+                <span className="text-xs text-slate-500">Filter Anomali & Verifikasi Silang</span>
               </div>
             </div>
 
-            <p className="text-xs text-slate-600  leading-relaxed">
+            <p className="text-sm text-slate-600 leading-relaxed">
               Memastikan bahwa peringatan dini benar-benar sahih sebelum menggerakkan regu pemadam Manggala Agni:
             </p>
 
             <div className="space-y-2 text-xs">
-              <div className="flex justify-between p-2.5 rounded-xl bg-slate-50  border border-slate-100 ">
+              <div className="flex justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-200">
                 <span>Kesehatan Node (Baterai &gt; 3.6V, RSSI &gt; -110 dBm)</span>
-                <span className="font-bold font-mono text-emerald-600">Bobot 25%</span>
+                <span className="font-bold font-mono text-emerald-700">Bobot 25%</span>
               </div>
-              <div className="flex justify-between p-2.5 rounded-xl bg-slate-50  border border-slate-100 ">
+              <div className="flex justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-200">
                 <span>Kesesuaian Spasial dengan Node Tetangga</span>
-                <span className="font-bold font-mono text-emerald-600">Bobot 25%</span>
+                <span className="font-bold font-mono text-emerald-700">Bobot 25%</span>
               </div>
-              <div className="flex justify-between p-2.5 rounded-xl bg-slate-50  border border-slate-100 ">
+              <div className="flex justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-200">
                 <span>Konsistensi Tren Waktu (Rate of Change)</span>
-                <span className="font-bold font-mono text-emerald-600">Bobot 20%</span>
+                <span className="font-bold font-mono text-emerald-700">Bobot 20%</span>
               </div>
-              <div className="flex justify-between p-2.5 rounded-xl bg-slate-50  border border-slate-100 ">
+              <div className="flex justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-200">
                 <span>Konfirmasi Laporan Lapangan Warga / MPA</span>
-                <span className="font-bold font-mono text-emerald-600">Bobot 20%</span>
+                <span className="font-bold font-mono text-emerald-700">Bobot 20%</span>
               </div>
-              <div className="flex justify-between p-2.5 rounded-xl bg-slate-50  border border-slate-100 ">
+              <div className="flex justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-200">
                 <span>Dukungan Citra Satelit VIIRS / MODIS</span>
-                <span className="font-bold font-mono text-emerald-600">Bobot 10%</span>
+                <span className="font-bold font-mono text-emerald-700">Bobot 10%</span>
               </div>
             </div>
 
-            <div className="p-3 bg-slate-100  rounded-xl text-xs font-mono text-slate-700 ">
+            <div className="p-3 bg-slate-100 rounded-xl text-xs font-mono text-slate-700">
               Trust = (0.25 × Health) + (0.25 × Neighbor) + (0.20 × Trend) + (0.20 × Citizen) + (0.10 × Sat)
             </div>
           </div>

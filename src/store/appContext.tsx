@@ -72,6 +72,8 @@ interface AppContextType {
   showToast: (msg: string) => void;
   isQRModalOpen: boolean;
   setIsQRModalOpen: (open: boolean) => void;
+  isDemoSheetOpen: boolean;
+  setIsDemoSheetOpen: (open: boolean) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -97,6 +99,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const [isSimulatingTime, setIsSimulatingTime] = useState<boolean>(true);
   const [isMobileFrameSimulated, setIsMobileFrameSimulated] = useState<boolean>(false);
   const [isQRModalOpen, setIsQRModalOpen] = useState<boolean>(false);
+  const [isDemoSheetOpen, setIsDemoSheetOpen] = useState<boolean>(false);
   const [activeToast, setActiveToast] = useState<string | null>(null);
 
   // Transition state for smooth 6-10s interpolation
@@ -608,7 +611,9 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         activeToast,
         showToast,
         isQRModalOpen,
-        setIsQRModalOpen
+        setIsQRModalOpen,
+        isDemoSheetOpen,
+        setIsDemoSheetOpen
       }}
     >
       {children}

@@ -2,7 +2,6 @@ import React from 'react';
 import { useApp } from '../../store/appContext';
 import { useAuth } from '../../store/authContext';
 import {
-  Flame,
   UserCheck,
   Shield,
   PlayCircle,
@@ -35,10 +34,8 @@ export const WelcomeScreen: React.FC = () => {
 
       {/* Main Center Content */}
       <div className="max-w-[420px] mx-auto w-full text-center space-y-6 my-auto py-8">
-        {/* Logo kecil hijau */}
-        <div className="inline-flex p-3 rounded-xl bg-emerald-700 text-white shadow-xs">
-          <Flame className="w-8 h-8 text-white" />
-        </div>
+        {/* Logo DETARA */}
+        <img src="/logo.png" alt="Logo DETARA" className="w-24 h-24 mx-auto object-contain mix-blend-multiply" />
 
         {/* Nama & Tagline */}
         <div className="space-y-2">

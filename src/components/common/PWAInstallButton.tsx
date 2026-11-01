@@ -63,6 +63,18 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({ compact = fa
     }
   };
 
+  useEffect(() => {
+    if (!showDesktopGuide && !showIOSGuide) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setShowDesktopGuide(false);
+        setShowIOSGuide(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [showDesktopGuide, showIOSGuide]);
+
   if (isInstalled) {
     return (
       <span className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium text-emerald-700 bg-emerald-50 rounded-xl border border-emerald-200">
@@ -85,8 +97,14 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({ compact = fa
 
       {/* Desktop Fallback Guide Modal */}
       {showDesktopGuide && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-          <div className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-xl border border-slate-200 text-slate-800">
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-600/30 p-4 animate-in fade-in duration-150"
+          onClick={() => setShowDesktopGuide(false)}
+        >
+          <div
+            className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-xl border border-slate-200 text-slate-800"
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <h3 className="font-bold text-slate-900 text-base">Pasang PWA di Browser</h3>
               <button
@@ -111,8 +129,14 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({ compact = fa
 
       {/* iOS Safari Guide Modal */}
       {showIOSGuide && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-          <div className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-xl border border-slate-200 text-slate-800">
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-600/30 p-4 animate-in fade-in duration-150"
+          onClick={() => setShowIOSGuide(false)}
+        >
+          <div
+            className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-xl border border-slate-200 text-slate-800"
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div className="flex items-center gap-2">
                 <Smartphone className="w-5 h-5 text-emerald-700" />

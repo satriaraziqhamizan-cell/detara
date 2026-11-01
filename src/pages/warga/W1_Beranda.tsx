@@ -66,22 +66,27 @@ export const W1_Beranda: React.FC<W1BerandaProps> = ({ onNavigate }) => {
   return (
     <div className="space-y-4 text-[15px] text-slate-800">
       {/* Zone Selector Bar */}
-      <div className="bg-white p-3.5 rounded-xl border border-slate-200 shadow-xs flex items-center justify-between gap-3 min-h-[44px]">
-        <div className="flex items-center gap-2 text-[13px] text-slate-600 shrink-0">
-          <MapPin className="w-4 h-4 text-emerald-700 shrink-0" />
-          <span className="font-semibold">Desa:</span>
+      <div className="bg-white p-3.5 rounded-xl border border-slate-200 shadow-xs space-y-1.5">
+        <div className="flex items-center justify-between gap-3 min-h-[44px]">
+          <div className="flex items-center gap-2 text-[13px] text-slate-600 shrink-0">
+            <MapPin className="w-4 h-4 text-emerald-700 shrink-0" />
+            <span className="font-semibold">Desa:</span>
+          </div>
+          <select
+            value={selectedZone.id}
+            onChange={(e) => setSelectedZoneId(e.target.value)}
+            className="min-w-0 flex-1 text-[15px] font-semibold text-slate-900 bg-slate-50 py-2 px-2.5 rounded-lg border border-slate-200 focus:outline-none focus:border-emerald-700 min-h-[44px]"
+          >
+            {zones.map((z) => (
+              <option key={z.id} value={z.id}>
+                {z.name}
+              </option>
+            ))}
+          </select>
         </div>
-        <select
-          value={selectedZone.id}
-          onChange={(e) => setSelectedZoneId(e.target.value)}
-          className="min-w-0 flex-1 text-[15px] font-semibold text-slate-900 bg-slate-50 py-2 px-2.5 rounded-lg border border-slate-200 focus:outline-none focus:border-emerald-700 min-h-[44px]"
-        >
-          {zones.map((z) => (
-            <option key={z.id} value={z.id}>
-              {z.name} ({z.regency})
-            </option>
-          ))}
-        </select>
+        <p className="text-[12px] text-slate-500 pl-6">
+          Kabupaten {selectedZone.regency} · Gambut {selectedZone.peatType}
+        </p>
       </div>
 
       {/* Main Status Card: White card with left border strip & 22px title (Item 12) */}

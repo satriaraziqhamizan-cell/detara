@@ -54,6 +54,15 @@ export const W4_Lapor: React.FC<W4LaporProps> = ({ onSuccess }) => {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
 
+  React.useEffect(() => {
+    if (!isPrivacyModalOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsPrivacyModalOpen(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isPrivacyModalOpen]);
+
   // Real Geolocation API request
   const requestRealGPS = () => {
     if (!navigator.geolocation) {
@@ -319,7 +328,7 @@ export const W4_Lapor: React.FC<W4LaporProps> = ({ onSuccess }) => {
                 <button
                   type="button"
                   onClick={() => setPhotoPreview(null)}
-                  className="absolute top-2 right-2 px-2.5 py-1 rounded-md bg-black/60 text-white text-[13px] font-bold min-h-[44px]"
+                  className="absolute top-2 right-2 px-3 py-1.5 rounded-md bg-white/95 text-red-600 border border-slate-200 shadow-sm text-[13px] font-bold min-h-[44px] flex items-center gap-1 hover:bg-white"
                 >
                   Hapus foto
                 </button>
@@ -446,8 +455,14 @@ export const W4_Lapor: React.FC<W4LaporProps> = ({ onSuccess }) => {
 
       {/* Privacy Policy Modal */}
       {isPrivacyModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 overflow-y-auto">
-          <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto rounded-xl bg-white p-5 shadow-lg border border-slate-200">
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-600/30 p-4 overflow-y-auto animate-in fade-in duration-150"
+          onClick={() => setIsPrivacyModalOpen(false)}
+        >
+          <div
+            className="w-full max-w-xl max-h-[90vh] overflow-y-auto rounded-xl bg-white p-5 shadow-lg border border-slate-200 text-slate-800"
+            onClick={(e) => e.stopPropagation()}
+          >
             <KebijakanPrivasi onBack={() => setIsPrivacyModalOpen(false)} />
           </div>
         </div>

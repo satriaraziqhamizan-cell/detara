@@ -18,7 +18,7 @@ export const QRCodeModal: React.FC<QRCodeModalProps> = ({ isOpen, onClose }) => 
         width: 320,
         margin: 2,
         color: {
-          dark: '#0f172a',
+          dark: '#000000',
           light: '#ffffff'
         }
       })
@@ -62,7 +62,7 @@ export const QRCodeModal: React.FC<QRCodeModalProps> = ({ isOpen, onClose }) => 
   return (
     <div
       onClick={onClose}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 animate-in fade-in duration-150"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-slate-600/30 p-4 animate-in fade-in duration-150"
       role="dialog"
       aria-modal="true"
     >

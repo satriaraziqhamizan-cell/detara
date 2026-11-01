@@ -4,7 +4,6 @@ import { useAuth } from '../../store/authContext';
 import { PWAInstallButton } from './PWAInstallButton';
 import {
   QrCode,
-  Flame,
   LogOut,
   User,
   Shield,
@@ -14,11 +13,12 @@ import {
   Info,
   Smartphone,
   LayoutDashboard,
+  Sliders,
   X
 } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
-  const { mode, setMode, setIsQRModalOpen, showToast } = useApp();
+  const { mode, setMode, setIsQRModalOpen, setIsDemoSheetOpen, showToast } = useApp();
   const { authMode, profile, logout, openLoginModal } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
 
@@ -44,9 +44,7 @@ export const Navbar: React.FC = () => {
       <div className="md:hidden px-3.5 h-14 flex items-center justify-between gap-2">
         {/* Left: Logo + DETARA */}
         <div className="flex items-center gap-2 shrink-0">
-          <div className="w-8 h-8 rounded-lg bg-emerald-700 flex items-center justify-center text-white">
-            <Flame className="w-4 h-4 text-white" />
-          </div>
+          <img src="/logo.png" alt="Logo DETARA" className="w-9 h-9 object-contain mix-blend-multiply" />
           <a
             href="/"
             onClick={(e) => {
@@ -78,7 +76,7 @@ export const Navbar: React.FC = () => {
           {isMobileMenuOpen && (
             <>
               <div
-                className="fixed inset-0 z-40 bg-black/20"
+                className="fixed inset-0 z-40 bg-slate-600/25"
                 onClick={() => setIsMobileMenuOpen(false)}
               />
               <div className="absolute right-0 top-12 z-50 w-56 rounded-xl bg-white border border-slate-200 shadow-lg py-2 text-[14px] text-slate-700 animate-in fade-in duration-100">
@@ -124,6 +122,17 @@ export const Navbar: React.FC = () => {
 
                 <button
                   onClick={() => {
+                    setIsDemoSheetOpen(true);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="w-full px-3.5 py-2.5 text-left hover:bg-slate-50 flex items-center gap-2.5 min-h-[44px]"
+                >
+                  <Sliders className="w-4 h-4 text-emerald-700" />
+                  <span>Panel Demo</span>
+                </button>
+
+                <button
+                  onClick={() => {
                     setMode('tentang');
                     setIsMobileMenuOpen(false);
                   }}
@@ -160,9 +169,7 @@ export const Navbar: React.FC = () => {
       <div className="hidden md:flex max-w-7xl mx-auto px-4 h-14 items-center justify-between gap-6">
         {/* Zone 1: Logo & Name */}
         <div className="flex items-center gap-2.5 shrink-0">
-          <div className="w-8 h-8 rounded-lg bg-emerald-700 flex items-center justify-center text-white">
-            <Flame className="w-4 h-4 text-white" />
-          </div>
+          <img src="/logo.png" alt="Logo DETARA" className="w-9 h-9 object-contain mix-blend-multiply" />
           <a
             href="/"
             onClick={(e) => {

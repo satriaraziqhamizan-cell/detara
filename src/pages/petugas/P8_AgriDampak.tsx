@@ -93,7 +93,7 @@ export const P8_AgriDampak: React.FC = () => {
             <Leaf className="w-6 h-6 text-emerald-600" />
             <span>Keterkaitan 6 Subtema YESC 2026 & Estimasi Dampak</span>
           </h1>
-          <p className="text-xs text-slate-500 ">
+          <p className="text-sm text-slate-500">
             Penjelasan dampak multidimensi pencegahan karhutla: Lingkungan, Kesehatan, Pangan, Ekonomi, Edukasi, dan Ketahanan Wilayah
           </p>
         </div>
@@ -110,25 +110,25 @@ export const P8_AgriDampak: React.FC = () => {
             >
               <div>
                 <div className="flex items-center justify-between">
-                  <div className="p-2.5 rounded-2xl bg-white  shadow-sm">
+                  <div className="p-2.5 rounded-2xl bg-white shadow-sm">
                     <Icon className="w-5 h-5" />
                   </div>
-                  <span className="text-[10px] font-bold font-mono px-2 py-0.5 rounded bg-white/80 ">
+                  <span className="text-xs font-bold font-mono px-2 py-0.5 rounded bg-white/80">
                     {st.sdgs.split('&')[0].trim()}
                   </span>
                 </div>
 
-                <h3 className="text-sm font-bold text-slate-900  mt-3">
+                <h3 className="text-sm font-bold text-slate-900 mt-3">
                   {st.title}
                 </h3>
-                <p className="text-xs text-slate-600  mt-1 leading-relaxed">
+                <p className="text-sm text-slate-600 mt-1 leading-relaxed">
                   {st.details}
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-black/10 ">
-                <span className="text-[10px] text-slate-500 block">{st.metricLabel}:</span>
-                <span className="text-base font-extrabold font-mono text-slate-900 ">
+              <div className="pt-3 border-t border-black/10">
+                <span className="text-xs text-slate-500 block">{st.metricLabel}:</span>
+                <span className="text-base font-extrabold font-mono text-slate-900">
                   {st.metric}
                 </span>
               </div>
@@ -138,47 +138,47 @@ export const P8_AgriDampak: React.FC = () => {
       </div>
 
       {/* Agri-Advisory Calendar Module (Food Security Pillar) */}
-      <div className="bg-white  p-6 rounded-3xl border border-slate-200  shadow-sm space-y-4">
+      <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Calendar className="w-5 h-5 text-emerald-600" />
-            <h3 className="text-base font-bold text-slate-900 ">
+            <h3 className="text-base font-bold text-slate-900">
               Modul Agri-Advisory: Kalender Risiko Tani & Panduan PLTB Jambi
             </h3>
           </div>
-          <span className="text-xs text-emerald-600 font-semibold bg-emerald-50  px-2.5 py-1 rounded-lg">
+          <span className="text-xs text-emerald-700 font-semibold bg-emerald-50 px-2.5 py-1 rounded-lg">
             Petani Siaga Api
           </span>
         </div>
 
-        <p className="text-xs text-slate-600  leading-relaxed">
+        <p className="text-sm text-slate-600 leading-relaxed">
           Petani perkebunan rakyat di Muaro Jambi dan Tanjung Jabung sering terjebak membakar seresah karena ketiadaan modal alat berat. Modul Agri-Advisory DETARA menyediakan kalender prediksi kelembapan tanah, rekomendasi waktu aman pengolahan tanah, dan panduan dekomposisi hayati tanpa api.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
-          <div className="p-3.5 rounded-2xl bg-slate-50  border border-slate-100  space-y-1">
-            <span className="font-bold text-slate-900  block">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
+          <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
+            <span className="font-bold text-slate-900 block text-sm">
               1. Pengecekan Ambang Muka Air
             </span>
-            <p className="text-slate-500 text-[11px]">
+            <p className="text-slate-600 text-sm leading-relaxed">
               Jika muka air kanal &lt; -40 cm, dilarang keras melakukan pembersihan seresah dengan api terbuka di lahan gambut.
             </p>
           </div>
 
-          <div className="p-3.5 rounded-2xl bg-slate-50  border border-slate-100  space-y-1">
-            <span className="font-bold text-slate-900  block">
+          <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
+            <span className="font-bold text-slate-900 block text-sm">
               2. Aplikasi Bio-Dekomposer Cair
             </span>
-            <p className="text-slate-500 text-[11px]">
+            <p className="text-slate-600 text-sm leading-relaxed">
               Semprotkan mikroba pengurai jerami/pelepah kelapa sawit dosis 2 liter/ha untuk memicu fermentasi alami dalam 21 hari.
             </p>
           </div>
 
-          <div className="p-3.5 rounded-2xl bg-slate-50  border border-slate-100  space-y-1">
-            <span className="font-bold text-slate-900  block">
+          <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
+            <span className="font-bold text-slate-900 block text-sm">
               3. Pembuatan Rorak & Sekat Kanal
             </span>
-            <p className="text-slate-500 text-[11px]">
+            <p className="text-slate-600 text-sm leading-relaxed">
               Buat rorak penampung air hujan di antara barisan tanaman produktif untuk mempertahankan kelembapan mikro perkebunan.
             </p>
           </div>

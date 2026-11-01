@@ -114,139 +114,139 @@ export const P3_Sensor: React.FC = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-xl md:text-2xl font-extrabold text-slate-900 ">
+          <h1 className="text-xl md:text-2xl font-extrabold text-slate-900">
             Monitoring Jaringan Sensor IoT & Telemetri
           </h1>
-          <p className="text-xs text-slate-500 ">
-            Pembacaan waktu nyata dari sensor lahan gambut (Node A), stasiun udara (Node B), dan cuaca mikro (Node C)
+          <p className="text-sm text-slate-500 mt-1">
+            Pembacaan simulasi dari node sensor (data simulasi untuk demonstrasi)
           </p>
         </div>
 
         <div className="flex items-center gap-2">
           <button
             onClick={exportTelemetryCsv}
-            className="px-3.5 py-2 rounded-xl bg-slate-900  text-white  text-xs font-bold hover:bg-slate-800 transition flex items-center gap-2 shadow-sm"
+            className="px-3.5 py-2.5 rounded-xl bg-emerald-700 text-white text-sm font-bold hover:bg-emerald-800 transition flex items-center gap-2 shadow-xs min-h-[44px]"
           >
-            <Download className="w-3.5 h-3.5" />
+            <Download className="w-4 h-4" />
             <span>Ekspor CSV</span>
           </button>
         </div>
       </div>
 
-      {/* Selected Node Real-time Telemetry Showcase Card */}
-      <div className="bg-gradient-to-br from-slate-900 to-slate-950 text-white p-6 rounded-3xl border border-slate-800 shadow-xl space-y-5">
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-4">
+      {/* Selected Node Simulated Telemetry Card */}
+      <div className="bg-white text-slate-800 p-6 rounded-2xl border border-slate-200 shadow-xs space-y-5">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
           <div className="flex items-center gap-3">
-            <div className="p-3 bg-emerald-500/20 text-emerald-400 rounded-2xl border border-emerald-500/30">
+            <div className="p-3 bg-emerald-50 text-emerald-700 rounded-xl border border-emerald-200">
               <Radio className="w-6 h-6" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-mono text-sm font-bold text-emerald-400">{selectedNode.id}</span>
-                <span className="text-xs px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 font-mono">
+                <span className="font-mono text-sm font-bold text-emerald-700">{selectedNode.id}</span>
+                <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 font-mono border border-slate-200">
                   {selectedNode.firmwareVersion}
                 </span>
                 <span
                   className={`text-xs px-2 py-0.5 rounded-full font-bold ${
                     selectedNode.status === 'ONLINE'
-                      ? 'bg-emerald-950 text-emerald-400 border border-emerald-800'
+                      ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
                       : selectedNode.status === 'WARNING'
-                      ? 'bg-red-950 text-red-400 border border-red-800'
-                      : 'bg-amber-950 text-amber-400 border border-amber-800'
+                      ? 'bg-red-50 text-red-700 border border-red-200'
+                      : 'bg-amber-50 text-amber-700 border border-amber-200'
                   }`}
                 >
                   {selectedNode.status}
                 </span>
               </div>
-              <h2 className="text-lg font-bold text-white mt-0.5">{selectedNode.name}</h2>
-              <span className="text-xs text-slate-400">{selectedNode.zoneName}</span>
+              <h2 className="text-lg font-bold text-slate-900 mt-0.5">{selectedNode.name}</h2>
+              <span className="text-sm text-slate-500">{selectedNode.zoneName}</span>
             </div>
           </div>
 
           <div className="flex items-center gap-4 text-xs font-mono">
             <div>
-              <span className="text-slate-400 block text-[10px]">Tegangan Baterai</span>
-              <span className="text-emerald-400 font-bold">{selectedNode.batteryVolt} V ({selectedNode.batteryPercent}%)</span>
+              <span className="text-slate-500 block text-xs">Tegangan Baterai</span>
+              <span className="text-emerald-700 font-bold text-sm">{selectedNode.batteryVolt} V ({selectedNode.batteryPercent}%)</span>
             </div>
             <div>
-              <span className="text-slate-400 block text-[10px]">Sinyal LoRa</span>
-              <span className="text-cyan-400 font-bold">{selectedNode.rssi} dBm</span>
+              <span className="text-slate-500 block text-xs">Sinyal LoRa</span>
+              <span className="text-cyan-700 font-bold text-sm">{selectedNode.rssi} dBm</span>
             </div>
             <div>
-              <span className="text-slate-400 block text-[10px]">Health Index</span>
-              <span className="text-amber-400 font-bold">{selectedNode.healthScore}%</span>
+              <span className="text-slate-500 block text-xs">Health Index</span>
+              <span className="text-amber-700 font-bold text-sm">{selectedNode.healthScore}%</span>
             </div>
           </div>
         </div>
 
         {/* Telemetry Gauge Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-          <div className="bg-slate-950/70 p-3 rounded-2xl border border-slate-800">
-            <span className="text-[10px] text-slate-400 block">Kelembapan Tanah</span>
-            <span className="text-xl font-extrabold font-mono text-emerald-400 tabular-nums">
+          <div className="bg-slate-50 p-3 rounded-xl border border-slate-200">
+            <span className="text-xs text-slate-500 block">Kelembapan Tanah</span>
+            <span className="text-xl font-extrabold font-mono text-emerald-700 tabular-nums">
               {selectedNode.telemetry.soilMoisture}%
             </span>
-            <span className="text-[9px] text-slate-500 block mt-0.5">Kapasitif RS485</span>
+            <span className="text-xs text-slate-400 block mt-0.5">Kapasitif RS485</span>
           </div>
 
-          <div className="bg-slate-950/70 p-3 rounded-2xl border border-slate-800">
-            <span className="text-[10px] text-slate-400 block">Tinggi Muka Air</span>
-            <span className="text-xl font-extrabold font-mono text-cyan-400 tabular-nums">
+          <div className="bg-slate-50 p-3 rounded-xl border border-slate-200">
+            <span className="text-xs text-slate-500 block">Tinggi Muka Air</span>
+            <span className="text-xl font-extrabold font-mono text-cyan-700 tabular-nums">
               {selectedNode.telemetry.waterTableCm} cm
             </span>
-            <span className="text-[9px] text-slate-500 block mt-0.5">Dipwell Ultrasonik</span>
+            <span className="text-xs text-slate-400 block mt-0.5">Dipwell Ultrasonik</span>
           </div>
 
-          <div className="bg-slate-950/70 p-3 rounded-2xl border border-slate-800">
-            <span className="text-[10px] text-slate-400 block">Suhu Gambut</span>
-            <span className="text-xl font-extrabold font-mono text-amber-400 tabular-nums">
+          <div className="bg-slate-50 p-3 rounded-xl border border-slate-200">
+            <span className="text-xs text-slate-500 block">Suhu Gambut</span>
+            <span className="text-xl font-extrabold font-mono text-amber-700 tabular-nums">
               {selectedNode.telemetry.soilTemp}°C
             </span>
-            <span className="text-[9px] text-slate-500 block mt-0.5">Probe DS18B20</span>
+            <span className="text-xs text-slate-400 block mt-0.5">Probe DS18B20</span>
           </div>
 
-          <div className="bg-slate-950/70 p-3 rounded-2xl border border-slate-800">
-            <span className="text-[10px] text-slate-400 block">Suhu & RH Udara</span>
-            <span className="text-xl font-extrabold font-mono text-white tabular-nums">
+          <div className="bg-slate-50 p-3 rounded-xl border border-slate-200">
+            <span className="text-xs text-slate-500 block">Suhu & RH Udara</span>
+            <span className="text-xl font-extrabold font-mono text-slate-900 tabular-nums">
               {selectedNode.telemetry.airTemp}° / {selectedNode.telemetry.airRh}%
             </span>
-            <span className="text-[9px] text-slate-500 block mt-0.5">Sensor SHT31</span>
+            <span className="text-xs text-slate-400 block mt-0.5">Sensor SHT31</span>
           </div>
 
-          <div className="bg-slate-950/70 p-3 rounded-2xl border border-slate-800">
-            <span className="text-[10px] text-slate-400 block">Gas Karbon Monoksida</span>
-            <span className="text-xl font-extrabold font-mono text-rose-400 tabular-nums">
+          <div className="bg-slate-50 p-3 rounded-xl border border-slate-200">
+            <span className="text-xs text-slate-500 block">Gas Karbon Monoksida</span>
+            <span className="text-xl font-extrabold font-mono text-rose-700 tabular-nums">
               {selectedNode.telemetry.coPpm} ppm
             </span>
-            <span className="text-[9px] text-slate-500 block mt-0.5">Sensor Elektrokimia CO</span>
+            <span className="text-xs text-slate-400 block mt-0.5">Sensor Elektrokimia CO</span>
           </div>
 
-          <div className="bg-slate-950/70 p-3 rounded-2xl border border-slate-800">
-            <span className="text-[10px] text-slate-400 block">Partikulat PM2.5</span>
-            <span className="text-xl font-extrabold font-mono text-purple-400 tabular-nums">
+          <div className="bg-slate-50 p-3 rounded-xl border border-slate-200">
+            <span className="text-xs text-slate-500 block">Partikulat PM2.5</span>
+            <span className="text-xl font-extrabold font-mono text-purple-700 tabular-nums">
               {selectedNode.telemetry.pm25} µg
             </span>
-            <span className="text-[9px] text-slate-500 block mt-0.5">Laser Optik PMS5003</span>
+            <span className="text-xs text-slate-400 block mt-0.5">Laser Optik PMS5003</span>
           </div>
         </div>
 
-        {/* Point 22: Time-series Line Chart in pure SVG (no new library) */}
-        <div className="p-4 bg-slate-950/90 rounded-2xl border border-slate-800 space-y-3">
+        {/* Time-series Line Chart in light mode */}
+        <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-3">
           <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
             <div className="flex items-center gap-2">
-              <Activity className="w-4 h-4 text-emerald-400" />
-              <span className="font-bold text-white">
+              <Activity className="w-4 h-4 text-emerald-700" />
+              <span className="font-bold text-slate-900 text-sm">
                 Grafik Deret Waktu: Kelembapan Tanah vs PM2.5 (Node {selectedNode.id})
               </span>
             </div>
 
             <div className="flex items-center gap-4 text-xs font-semibold">
-              <div className="flex items-center gap-1.5 text-emerald-400">
-                <span className="w-3 h-1 bg-emerald-400 rounded-full inline-block"></span>
+              <div className="flex items-center gap-1.5 text-emerald-700">
+                <span className="w-3 h-1 bg-emerald-700 rounded-full inline-block"></span>
                 <span>Kelembapan Tanah (%)</span>
               </div>
-              <div className="flex items-center gap-1.5 text-purple-400">
-                <span className="w-3 h-1 bg-purple-400 rounded-full inline-block"></span>
+              <div className="flex items-center gap-1.5 text-purple-700">
+                <span className="w-3 h-1 bg-purple-700 rounded-full inline-block"></span>
                 <span>Partikulat PM2.5 (µg/m³)</span>
               </div>
             </div>
@@ -256,7 +256,7 @@ export const P3_Sensor: React.FC = () => {
           <div className="w-full overflow-x-auto">
             <svg
               viewBox={`0 0 ${chartWidth} ${chartHeight}`}
-              className="w-full h-44 text-slate-400 select-none"
+              className="w-full h-44 select-none"
             >
               {/* Horizontal Grid lines */}
               {[0, 25, 50, 75, 100].map((level) => {
@@ -268,14 +268,14 @@ export const P3_Sensor: React.FC = () => {
                       y1={y}
                       x2={chartWidth - padding.right}
                       y2={y}
-                      stroke="rgba(255,255,255,0.08)"
+                      stroke="rgba(0,0,0,0.06)"
                       strokeDasharray="4 4"
                     />
                     <text
                       x={padding.left - 6}
                       y={y + 3}
                       textAnchor="end"
-                      fontSize="9"
+                      fontSize="12"
                       fill="#64748b"
                       fontFamily="monospace"
                     >
@@ -292,8 +292,8 @@ export const P3_Sensor: React.FC = () => {
                   x={getX(idx)}
                   y={chartHeight - 6}
                   textAnchor="middle"
-                  fontSize="9"
-                  fill="#94a3b8"
+                  fontSize="12"
+                  fill="#64748b"
                   fontFamily="monospace"
                 >
                   {t}
@@ -304,7 +304,7 @@ export const P3_Sensor: React.FC = () => {
               <path
                 d={moistPathD}
                 fill="none"
-                stroke="#10b981"
+                stroke="#15803d"
                 strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -317,7 +317,7 @@ export const P3_Sensor: React.FC = () => {
                   cx={getX(idx)}
                   cy={getMoistY(val)}
                   r="3.5"
-                  fill="#10b981"
+                  fill="#15803d"
                   stroke="#ffffff"
                   strokeWidth="1.5"
                 />
@@ -327,7 +327,7 @@ export const P3_Sensor: React.FC = () => {
               <path
                 d={pm25PathD}
                 fill="none"
-                stroke="#c084fc"
+                stroke="#7e22ce"
                 strokeWidth="2.5"
                 strokeDasharray="5 3"
                 strokeLinecap="round"
@@ -341,7 +341,7 @@ export const P3_Sensor: React.FC = () => {
                   cx={getX(idx)}
                   cy={getPm25Y(val)}
                   r="3"
-                  fill="#c084fc"
+                  fill="#7e22ce"
                   stroke="#ffffff"
                   strokeWidth="1"
                 />
@@ -351,30 +351,30 @@ export const P3_Sensor: React.FC = () => {
         </div>
 
         {/* Edge AI Diagnostic Note */}
-        <div className="p-3 bg-slate-950/90 rounded-2xl border border-slate-800 flex items-center justify-between text-xs">
+        <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between text-sm">
           <div className="flex items-center gap-2">
-            <Cpu className="w-4 h-4 text-emerald-400" />
-            <span className="text-slate-300">
-              Status Edge AI Mikrokontroler: <strong className="text-white font-mono">{selectedNode.edgeAiFlag}</strong>
+            <Cpu className="w-4 h-4 text-emerald-700" />
+            <span className="text-slate-600">
+              Status Edge AI Mikrokontroler: <strong className="text-slate-900 font-mono">{selectedNode.edgeAiFlag}</strong>
             </span>
           </div>
-          <span className="text-[11px] text-slate-400">Pembaruan terakhir: {currentTimeString}</span>
+          <span className="text-sm text-slate-500">Pembaruan terakhir: {currentTimeString}</span>
         </div>
       </div>
 
       {/* Filter & Search Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-3 bg-white  p-4 rounded-2xl border border-slate-200  shadow-sm">
+      <div className="flex flex-wrap items-center justify-between gap-3 bg-white p-4 rounded-2xl border border-slate-200 shadow-xs">
         <div className="flex items-center gap-2">
-          <span className="text-xs font-semibold text-slate-500">Filter Tipe:</span>
+          <span className="text-sm font-semibold text-slate-600">Filter Tipe:</span>
           <div className="flex items-center gap-1">
             {['ALL', 'A_LAHAN', 'B_UDARA', 'C_CUACA'].map((t) => (
               <button
                 key={t}
                 onClick={() => setFilterType(t)}
-                className={`px-3 py-1 rounded-xl text-xs font-semibold transition ${
+                className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition min-h-[38px] ${
                   filterType === t
-                    ? 'bg-slate-900  text-white '
-                    : 'text-slate-600  hover:bg-slate-100 :bg-slate-700'
+                    ? 'bg-emerald-700 text-white'
+                    : 'text-slate-600 hover:bg-slate-100'
                 }`}
               >
                 {t === 'ALL'
@@ -390,22 +390,22 @@ export const P3_Sensor: React.FC = () => {
         </div>
 
         <div className="relative w-full sm:w-64">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
+          <Search className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
           <input
             type="text"
             placeholder="Cari ID Node atau Lokasi..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full text-xs bg-slate-100  text-slate-800  pl-9 pr-3 py-2 rounded-xl border-none focus:ring-2 focus:ring-emerald-500"
+            className="w-full text-sm bg-slate-100 text-slate-800 pl-9 pr-3 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-700 min-h-[44px]"
           />
         </div>
       </div>
 
       {/* Telemetry Data Grid Table */}
-      <div className="bg-white  rounded-3xl border border-slate-200  shadow-sm overflow-hidden">
+      <div className="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-slate-50  text-slate-500 uppercase text-[10px] tracking-wider border-b border-slate-200 ">
+            <thead className="bg-slate-50 text-slate-600 uppercase text-xs font-bold tracking-wider border-b border-slate-200">
               <tr>
                 <th className="py-3 px-3">Node ID</th>
                 <th className="py-3 px-3">Lokasi / Wilayah</th>
@@ -421,7 +421,7 @@ export const P3_Sensor: React.FC = () => {
                 <th className="py-3 px-3 text-center">Aksi</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100  font-mono">
+            <tbody className="divide-y divide-slate-100 font-mono text-xs">
               {filteredNodes.map((node) => {
                 const isSelected = selectedNode.id === node.id;
                 const isWarning = node.status === 'WARNING';
@@ -433,17 +433,17 @@ export const P3_Sensor: React.FC = () => {
                     onClick={() => setSelectedNode(node)}
                     className={`cursor-pointer transition ${
                       isSelected
-                        ? 'bg-emerald-50/80  font-semibold'
-                        : 'hover:bg-slate-50 :bg-slate-700/30'
+                        ? 'bg-emerald-50/80 font-semibold'
+                        : 'hover:bg-slate-50'
                     }`}
                   >
-                    <td className="py-3 px-3 font-bold text-slate-900 ">
+                    <td className="py-3 px-3 font-bold text-slate-900">
                       {node.id}
                     </td>
-                    <td className="py-3 px-3 font-sans text-slate-700 ">
+                    <td className="py-3 px-3 font-sans text-slate-700">
                       <div>
-                        <span>{node.name}</span>
-                        <span className="block text-[10px] text-slate-400">{node.zoneName}</span>
+                        <span className="font-medium">{node.name}</span>
+                        <span className="block text-xs text-slate-400">{node.zoneName}</span>
                       </div>
                     </td>
                     <td className="py-3 px-3 font-sans text-slate-500">
@@ -455,33 +455,33 @@ export const P3_Sensor: React.FC = () => {
                     </td>
                     <td className="py-3 px-3 text-center font-sans">
                       <span
-                        className={`px-2 py-0.5 rounded text-[10px] font-bold ${
+                        className={`px-2 py-0.5 rounded text-xs font-bold ${
                           isWarning
-                            ? 'bg-red-100 text-red-700  '
+                            ? 'bg-red-100 text-red-700'
                             : isAnomaly
-                            ? 'bg-amber-100 text-amber-700  '
-                            : 'bg-emerald-100 text-emerald-700  '
+                            ? 'bg-amber-100 text-amber-700'
+                            : 'bg-emerald-100 text-emerald-700'
                         }`}
                       >
                         {node.status}
                       </span>
                     </td>
-                    <td className="py-3 px-3 text-center text-cyan-600  font-bold">
+                    <td className="py-3 px-3 text-center text-cyan-700 font-bold">
                       {node.telemetry.waterTableCm} cm
                     </td>
-                    <td className="py-3 px-3 text-center text-emerald-600  font-bold">
+                    <td className="py-3 px-3 text-center text-emerald-700 font-bold">
                       {node.telemetry.soilMoisture}%
                     </td>
-                    <td className="py-3 px-3 text-center text-amber-600 ">
+                    <td className="py-3 px-3 text-center text-amber-700">
                       {node.telemetry.soilTemp}°C
                     </td>
-                    <td className="py-3 px-3 text-center text-rose-600 ">
+                    <td className="py-3 px-3 text-center text-rose-700">
                       {node.telemetry.coPpm}
                     </td>
-                    <td className="py-3 px-3 text-center text-purple-600 ">
+                    <td className="py-3 px-3 text-center text-purple-700">
                       {node.telemetry.pm25}
                     </td>
-                    <td className="py-3 px-3 text-center text-slate-600 ">
+                    <td className="py-3 px-3 text-center text-slate-700">
                       {node.batteryVolt}V
                     </td>
                     <td className="py-3 px-3 text-center text-slate-500">
@@ -493,7 +493,7 @@ export const P3_Sensor: React.FC = () => {
                           e.stopPropagation();
                           setSelectedNode(node);
                         }}
-                        className="px-2.5 py-1 rounded-lg bg-slate-100  hover:bg-emerald-600 hover:text-white transition text-[11px] font-medium"
+                        className="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-emerald-700 hover:text-white transition text-xs font-medium min-h-[38px]"
                       >
                         Inspeksi
                       </button>

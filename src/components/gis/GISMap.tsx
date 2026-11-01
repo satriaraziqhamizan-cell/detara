@@ -102,23 +102,23 @@ export const GISMap: React.FC<GISMapProps> = ({
   };
 
   return (
-    <div className={`relative w-full ${height} bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 select-none shadow-inner`}>
+    <div className={`relative w-full ${height} bg-[#F1F5F9] rounded-2xl overflow-hidden border border-slate-200 select-none shadow-xs`}>
       {/* Top Map Floating Bar */}
       <div className="absolute top-3 left-3 right-3 z-20 flex flex-wrap items-center justify-between gap-2 pointer-events-none">
-        <div className="flex items-center gap-2 bg-slate-950/85 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-700/60 text-xs text-slate-200 pointer-events-auto shadow-md">
-          <Navigation className="w-3.5 h-3.5 text-emerald-400" />
-          <span className="font-semibold text-white">Peta SIG Jambi</span>
+        <div className="flex items-center gap-2 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-200 text-xs text-slate-700 pointer-events-auto shadow-xs">
+          <Navigation className="w-3.5 h-3.5 text-emerald-700" />
+          <span className="font-semibold text-slate-900">Peta SIG Jambi</span>
           <span className="text-slate-400">·</span>
-          <span className="text-slate-400">103.2° – 104.2° BT</span>
+          <span className="text-slate-500">103.2° – 104.2° BT</span>
         </div>
 
         {/* Layer Toggle Strip */}
         {showAllControls && (
-          <div className="flex items-center gap-1.5 bg-slate-950/85 backdrop-blur-md p-1 rounded-xl border border-slate-700/60 pointer-events-auto shadow-md text-xs">
+          <div className="flex items-center gap-1.5 bg-white/95 backdrop-blur-md p-1 rounded-xl border border-slate-200 pointer-events-auto shadow-xs text-xs">
             <button
               onClick={() => setShowSensors((v) => !v)}
               className={`px-2.5 py-1 rounded-lg flex items-center gap-1.5 transition-colors ${
-                showSensors ? 'bg-emerald-600/90 text-white font-medium' : 'text-slate-400 hover:text-white'
+                showSensors ? 'bg-emerald-700 text-white font-medium' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
               }`}
             >
               <Radio className="w-3.5 h-3.5" />
@@ -127,7 +127,7 @@ export const GISMap: React.FC<GISMapProps> = ({
             <button
               onClick={() => setShowHotspots((v) => !v)}
               className={`px-2.5 py-1 rounded-lg flex items-center gap-1.5 transition-colors ${
-                showHotspots ? 'bg-amber-600/90 text-white font-medium' : 'text-slate-400 hover:text-white'
+                showHotspots ? 'bg-amber-600 text-white font-medium' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
               }`}
             >
               <Flame className="w-3.5 h-3.5" />
@@ -136,7 +136,7 @@ export const GISMap: React.FC<GISMapProps> = ({
             <button
               onClick={() => setShowReports((v) => !v)}
               className={`px-2.5 py-1 rounded-lg flex items-center gap-1.5 transition-colors ${
-                showReports ? 'bg-blue-600/90 text-white font-medium' : 'text-slate-400 hover:text-white'
+                showReports ? 'bg-blue-600 text-white font-medium' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
               }`}
             >
               <FileText className="w-3.5 h-3.5" />
@@ -145,7 +145,7 @@ export const GISMap: React.FC<GISMapProps> = ({
             <button
               onClick={() => setShowCanals((v) => !v)}
               className={`px-2 py-1 rounded-lg hidden sm:flex items-center gap-1 transition-colors ${
-                showCanals ? 'bg-cyan-700 text-white font-medium' : 'text-slate-400 hover:text-white'
+                showCanals ? 'bg-cyan-700 text-white font-medium' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
               }`}
             >
               <span>Kanal Air</span>
@@ -153,7 +153,7 @@ export const GISMap: React.FC<GISMapProps> = ({
             <button
               onClick={() => setShowPatrolRoute((v) => !v)}
               className={`px-2 py-1 rounded-lg hidden md:flex items-center gap-1 transition-colors ${
-                showPatrolRoute ? 'bg-purple-700 text-white font-medium' : 'text-slate-400 hover:text-white'
+                showPatrolRoute ? 'bg-purple-700 text-white font-medium' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
               }`}
             >
               <span>Rute Patroli</span>
@@ -162,25 +162,25 @@ export const GISMap: React.FC<GISMapProps> = ({
         )}
 
         {/* Zoom & Pan Controls */}
-        <div className="flex items-center gap-1 bg-slate-950/85 backdrop-blur-md p-1 rounded-xl border border-slate-700/60 pointer-events-auto shadow-md">
+        <div className="flex items-center gap-1 bg-white/95 backdrop-blur-md p-1 rounded-xl border border-slate-200 pointer-events-auto shadow-xs">
           <button
             onClick={() => handleZoom(0.2)}
             title="Perbesar"
-            className="w-7 h-7 flex items-center justify-center rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
+            className="w-7 h-7 flex items-center justify-center rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors"
           >
             <ZoomIn className="w-3.5 h-3.5" />
           </button>
           <button
             onClick={() => handleZoom(-0.2)}
             title="Perkecil"
-            className="w-7 h-7 flex items-center justify-center rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
+            className="w-7 h-7 flex items-center justify-center rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors"
           >
             <ZoomOut className="w-3.5 h-3.5" />
           </button>
           <button
             onClick={handleReset}
             title="Reset Tampilan"
-            className="w-7 h-7 flex items-center justify-center rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
+            className="w-7 h-7 flex items-center justify-center rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors"
           >
             <RotateCcw className="w-3.5 h-3.5" />
           </button>
@@ -206,12 +206,12 @@ export const GISMap: React.FC<GISMapProps> = ({
           <defs>
             {/* Grid Pattern */}
             <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth="1" />
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(148,163,184,0.35)" strokeWidth="1" />
             </pattern>
             {/* Peatland Texture Gradient */}
             <radialGradient id="peatGradient" cx="60%" cy="50%" r="65%">
-              <stop offset="0%" stopColor="#1e293b" stopOpacity="0.8" />
-              <stop offset="100%" stopColor="#0f172a" stopOpacity="0.9" />
+              <stop offset="0%" stopColor="#e2e8f0" stopOpacity="0.8" />
+              <stop offset="100%" stopColor="#cbd5e1" stopOpacity="0.9" />
             </radialGradient>
             {/* Glowing Fire Pulse */}
             <filter id="firePulse">
@@ -224,7 +224,7 @@ export const GISMap: React.FC<GISMapProps> = ({
           </defs>
 
           {/* Background Grid */}
-          <rect width="800" height="500" fill="#0b1329" />
+          <rect width="800" height="500" fill="#F1F5F9" />
           <rect width="800" height="500" fill="url(#grid)" />
 
           {/* Coastline / River Batanghari Line */}
@@ -233,9 +233,9 @@ export const GISMap: React.FC<GISMapProps> = ({
             fill="none"
             stroke="#0284c7"
             strokeWidth="7"
-            opacity="0.35"
+            opacity="0.45"
           />
-          <text x="730" y="250" fill="#38bdf8" fontSize="9" opacity="0.6">Selat Berhala</text>
+          <text x="730" y="250" fill="#0369a1" fontSize="12" fontWeight="bold" opacity="0.85">Selat Berhala</text>
 
           {/* Peat Hydrological Units (KHG) Multi-Polygon Zones */}
           {zones.map((zone) => {
@@ -270,8 +270,8 @@ export const GISMap: React.FC<GISMapProps> = ({
                   rx={radius}
                   ry={radius * 0.75}
                   fill={riskColors.fill}
-                  fillOpacity={isSelected ? 0.32 : 0.18}
-                  stroke={isSelected ? '#ffffff' : riskColors.stroke}
+                  fillOpacity={isSelected ? 0.35 : 0.22}
+                  stroke={isSelected ? '#1e293b' : riskColors.stroke}
                   strokeWidth={isSelected ? 2.5 : 1.2}
                   strokeDasharray={zone.peatType === 'Gambut Dalam' ? 'none' : '4 3'}
                 />
@@ -281,10 +281,10 @@ export const GISMap: React.FC<GISMapProps> = ({
                   x={cx}
                   y={cy - 24}
                   textAnchor="middle"
-                  fill="#ffffff"
-                  fontSize="11"
+                  fill="#1e293b"
+                  fontSize="12"
                   fontWeight="bold"
-                  className="drop-shadow-md pointer-events-none"
+                  className="pointer-events-none"
                 >
                   {zone.name.split(' ')[0]}
                 </text>
@@ -292,9 +292,9 @@ export const GISMap: React.FC<GISMapProps> = ({
                   x={cx}
                   y={cy - 10}
                   textAnchor="middle"
-                  fill={riskColors.fill}
-                  fontSize="9.5"
-                  fontWeight="600"
+                  fill={riskColors.stroke}
+                  fontSize="12"
+                  fontWeight="700"
                   className="pointer-events-none"
                 >
                   {zone.riskLevel} ({zone.riskIndex})
@@ -351,7 +351,7 @@ export const GISMap: React.FC<GISMapProps> = ({
               />
               {/* Patrol vehicle position */}
               <circle cx="490" cy="284" r="6" fill="#a855f7" stroke="#ffffff" strokeWidth="2" />
-              <text x="490" y="272" fill="#d8b4fe" fontSize="8.5" textAnchor="middle" fontWeight="bold">
+              <text x="490" y="272" fill="#7e22ce" fontSize="12" textAnchor="middle" fontWeight="bold">
                 Armada Patroli Daops
               </text>
             </g>
@@ -414,7 +414,7 @@ export const GISMap: React.FC<GISMapProps> = ({
                     cx={node.coordinates.x}
                     cy={node.coordinates.y}
                     r="2.5"
-                    fill="#0f172a"
+                    fill="#ffffff"
                   />
 
                   {/* Node ID label */}
@@ -422,10 +422,11 @@ export const GISMap: React.FC<GISMapProps> = ({
                     x={node.coordinates.x}
                     y={node.coordinates.y + 16}
                     textAnchor="middle"
-                    fill="#cbd5e1"
-                    fontSize="8"
+                    fill="#1e293b"
+                    fontSize="12"
+                    fontWeight="bold"
                     fontFamily="monospace"
-                    className="pointer-events-none drop-shadow"
+                    className="pointer-events-none"
                   >
                     {node.id}
                   </text>
@@ -462,15 +463,15 @@ export const GISMap: React.FC<GISMapProps> = ({
                   cy={hs.coordinates.y}
                   r="5"
                   fill="#ea580c"
-                  stroke="#ffedd5"
+                  stroke="#ffffff"
                   strokeWidth="1.5"
                 />
                 <text
                   x={hs.coordinates.x}
                   y={hs.coordinates.y - 8}
                   textAnchor="middle"
-                  fill="#fdba74"
-                  fontSize="8"
+                  fill="#c2410c"
+                  fontSize="12"
                   fontWeight="bold"
                 >
                   VIIRS {hs.frpMw} MW
@@ -514,7 +515,7 @@ export const GISMap: React.FC<GISMapProps> = ({
                     y={rep.coordinates.y + 4}
                     textAnchor="middle"
                     fill="#ffffff"
-                    fontSize="8"
+                    fontSize="12"
                     fontWeight="bold"
                   >
                     {isFire ? '!' : isSmoke ? '~' : '✓'}
@@ -528,24 +529,24 @@ export const GISMap: React.FC<GISMapProps> = ({
       {/* Interactive Popover Modal / Inspection Sheet */}
       {activePopover && (
         <div
-          className="absolute z-30 bg-slate-900/95 backdrop-blur-md border border-slate-700 p-4 rounded-xl shadow-2xl text-slate-100 max-w-xs animate-in fade-in zoom-in-95 duration-150"
+          className="absolute z-30 bg-white border border-slate-200 p-4 rounded-xl shadow-xl text-slate-800 max-w-xs animate-in fade-in zoom-in-95 duration-150"
           style={{
             bottom: '16px',
             right: '16px'
           }}
         >
-          <div className="flex items-start justify-between gap-3 border-b border-slate-800 pb-2 mb-2">
+          <div className="flex items-start justify-between gap-3 border-b border-slate-100 pb-2 mb-2">
             <div>
-              <div className="text-[11px] font-mono uppercase tracking-wider text-emerald-400">
+              <div className="text-xs font-mono uppercase tracking-wider text-emerald-700 font-bold">
                 {activePopover.type === 'node'
-                  ? `IoT Node Telemetry`
+                  ? `Simulasi IoT Node`
                   : activePopover.type === 'hotspot'
-                  ? `Satelit Hotspot Deteksi`
+                  ? `Hotspot Satelit (Simulasi)`
                   : activePopover.type === 'report'
                   ? `Laporan Komunitas Warga`
                   : `Wilayah Gambut`}
               </div>
-              <h4 className="text-sm font-semibold text-white">
+              <h4 className="text-sm font-bold text-slate-900">
                 {activePopover.type === 'node'
                   ? activePopover.data.name
                   : activePopover.type === 'hotspot'
@@ -557,7 +558,7 @@ export const GISMap: React.FC<GISMapProps> = ({
             </div>
             <button
               onClick={() => setActivePopover(null)}
-              className="text-slate-400 hover:text-white p-1 rounded-md text-xs"
+              className="text-slate-400 hover:text-slate-600 p-1 rounded-md text-xs"
             >
               ✕
             </button>
@@ -565,51 +566,51 @@ export const GISMap: React.FC<GISMapProps> = ({
 
           {activePopover.type === 'node' && (
             <div className="space-y-1.5 text-xs">
-              <div className="grid grid-cols-2 gap-2 bg-slate-950/60 p-2 rounded-lg font-mono">
+              <div className="grid grid-cols-2 gap-2 bg-slate-50 border border-slate-200 p-2 rounded-lg font-mono">
                 <div>
-                  <span className="text-slate-400 block text-[10px]">Kelembapan Tanah:</span>
-                  <span className="text-emerald-400 font-bold">{activePopover.data.telemetry.soilMoisture}%</span>
+                  <span className="text-slate-500 block text-xs">Lembap Tanah:</span>
+                  <span className="text-emerald-700 font-bold">{activePopover.data.telemetry.soilMoisture}%</span>
                 </div>
                 <div>
-                  <span className="text-slate-400 block text-[10px]">Muka Air Tanah:</span>
-                  <span className="text-cyan-400 font-bold">{activePopover.data.telemetry.waterTableCm} cm</span>
+                  <span className="text-slate-500 block text-xs">Muka Air Tanah:</span>
+                  <span className="text-cyan-700 font-bold">{activePopover.data.telemetry.waterTableCm} cm</span>
                 </div>
                 <div>
-                  <span className="text-slate-400 block text-[10px]">Suhu Udara:</span>
-                  <span className="text-amber-400 font-bold">{activePopover.data.telemetry.airTemp}°C</span>
+                  <span className="text-slate-500 block text-xs">Suhu Udara:</span>
+                  <span className="text-amber-700 font-bold">{activePopover.data.telemetry.airTemp}°C</span>
                 </div>
                 <div>
-                  <span className="text-slate-400 block text-[10px]">Gas CO:</span>
-                  <span className="text-rose-400 font-bold">{activePopover.data.telemetry.coPpm} ppm</span>
+                  <span className="text-slate-500 block text-xs">Gas CO:</span>
+                  <span className="text-rose-700 font-bold">{activePopover.data.telemetry.coPpm} ppm</span>
                 </div>
               </div>
-              <div className="flex justify-between items-center text-[11px] text-slate-400 pt-1">
+              <div className="flex justify-between items-center text-xs text-slate-500 pt-1">
                 <span>Baterai: {activePopover.data.batteryPercent}% ({activePopover.data.batteryVolt}V)</span>
                 <span>Sinyal: {activePopover.data.rssi} dBm</span>
               </div>
-              <div className="text-[10px] text-slate-400">
-                Status Edge AI: <span className="text-white font-mono">{activePopover.data.edgeAiFlag}</span>
+              <div className="text-xs text-slate-500">
+                Status Edge AI: <span className="text-slate-900 font-mono font-bold">{activePopover.data.edgeAiFlag}</span>
               </div>
             </div>
           )}
 
           {activePopover.type === 'hotspot' && (
             <div className="space-y-1.5 text-xs">
-              <p className="text-slate-300">
-                Kecerahan Termal: <span className="font-mono text-white">{activePopover.data.brightnessKelvin} K</span>
+              <p className="text-slate-700">
+                Kecerahan Termal: <span className="font-mono text-slate-900 font-bold">{activePopover.data.brightnessKelvin} K</span>
               </p>
-              <p className="text-slate-300">
-                Fire Radiative Power: <span className="font-mono text-amber-400 font-bold">{activePopover.data.frpMw} MW</span>
+              <p className="text-slate-700">
+                Fire Radiative Power: <span className="font-mono text-amber-700 font-bold">{activePopover.data.frpMw} MW</span>
               </p>
-              <p className="text-slate-400 text-[11px]">Waktu Deteksi: {activePopover.data.timestamp}</p>
+              <p className="text-slate-500 text-xs">Waktu Deteksi: {activePopover.data.timestamp}</p>
             </div>
           )}
 
           {activePopover.type === 'report' && (
             <div className="space-y-1.5 text-xs">
-              <p className="text-slate-200 italic">"{activePopover.data.notes}"</p>
-              <div className="flex justify-between items-center text-[11px] text-slate-400 pt-1">
-                <span>Status: <span className="text-emerald-400 font-medium">{activePopover.data.status}</span></span>
+              <p className="text-slate-700 italic">"{activePopover.data.notes}"</p>
+              <div className="flex justify-between items-center text-xs text-slate-500 pt-1">
+                <span>Status: <span className="text-emerald-700 font-bold">{activePopover.data.status}</span></span>
                 <span>{activePopover.data.timestamp}</span>
               </div>
             </div>
@@ -618,16 +619,16 @@ export const GISMap: React.FC<GISMapProps> = ({
           {activePopover.type === 'zone' && (
             <div className="space-y-2 text-xs">
               <div className="flex justify-between items-center">
-                <span className="text-slate-400">Indeks Risiko:</span>
-                <span className="font-bold text-rose-400 font-mono">{activePopover.data.riskIndex}/100 ({activePopover.data.riskLevel})</span>
+                <span className="text-slate-500">Indeks Risiko:</span>
+                <span className="font-bold text-rose-700 font-mono">{activePopover.data.riskIndex}/100 ({activePopover.data.riskLevel})</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-slate-400">Trust Score:</span>
-                <span className="font-bold text-emerald-400 font-mono">{activePopover.data.trustScore}% ({activePopover.data.trustLevel})</span>
+                <span className="text-slate-500">Trust Score:</span>
+                <span className="font-bold text-emerald-700 font-mono">{activePopover.data.trustScore}% ({activePopover.data.trustLevel})</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-slate-400">Sumber Air Terdekat:</span>
-                <span className="text-cyan-300 truncate max-w-[140px]">{activePopover.data.nearestWaterSource}</span>
+                <span className="text-slate-500">Sumber Air Terdekat:</span>
+                <span className="text-cyan-800 truncate max-w-[140px] font-medium">{activePopover.data.nearestWaterSource}</span>
               </div>
             </div>
           )}
@@ -635,9 +636,9 @@ export const GISMap: React.FC<GISMapProps> = ({
       )}
 
       {/* Bottom Map Legend */}
-      <div className="absolute bottom-3 left-3 z-10 hidden sm:flex items-center gap-3 bg-slate-950/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-800 text-[11px] text-slate-300 shadow">
+      <div className="absolute bottom-3 left-3 z-10 hidden sm:flex items-center gap-3 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-200 text-xs text-slate-700 shadow-xs">
         <div className="flex items-center gap-1.5">
-          <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+          <span className="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
           <span>Normal</span>
         </div>
         <div className="flex items-center gap-1.5">
@@ -649,10 +650,10 @@ export const GISMap: React.FC<GISMapProps> = ({
           <span>Siaga</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></span>
+          <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse"></span>
           <span>Awas</span>
         </div>
-        <div className="border-l border-slate-700 pl-2 flex items-center gap-1 text-slate-400">
+        <div className="border-l border-slate-200 pl-2 flex items-center gap-1 text-slate-500">
           <span>Data Simulasi Demonstrasi</span>
         </div>
       </div>

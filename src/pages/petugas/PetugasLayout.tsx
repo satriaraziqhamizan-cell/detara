@@ -70,6 +70,15 @@ export const PetugasLayout: React.FC = () => {
     }
   };
 
+  React.useEffect(() => {
+    if (!isSidebarOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsSidebarOpen(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isSidebarOpen]);
+
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col md:flex-row">
       {/* Mobile Sidebar Toggle Button */}
@@ -96,9 +105,7 @@ export const PetugasLayout: React.FC = () => {
           {/* Sidebar Header Brand */}
           <div className="px-2 pt-2 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-xl bg-emerald-700 text-white flex items-center justify-center font-black text-sm">
-                DT
-              </div>
+              <img src="/logo.png" alt="Logo DETARA" className="w-9 h-9 object-contain mix-blend-multiply" />
               <div>
                 <h2 className="font-extrabold text-sm text-slate-900 tracking-tight">
                   Command Center
@@ -111,7 +118,7 @@ export const PetugasLayout: React.FC = () => {
           {/* Quick back to Layar Awal button */}
           <button
             onClick={() => setMode('welcome')}
-            className="w-full flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 text-xs font-bold hover:bg-slate-100 transition min-h-[44px]"
+            className="w-full flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 text-sm font-bold hover:bg-slate-100 transition min-h-[44px]"
           >
             <ArrowLeft className="w-4 h-4 text-emerald-700" />
             <span>Kembali ke Layar Awal</span>
@@ -130,7 +137,7 @@ export const PetugasLayout: React.FC = () => {
                     setActiveTab(item.id);
                     setIsSidebarOpen(false);
                   }}
-                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold transition min-h-[44px] ${
+                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-semibold transition min-h-[44px] ${
                     isActive
                       ? 'bg-emerald-700 text-white shadow-sm'
                       : 'text-slate-600 hover:bg-slate-100'
@@ -158,7 +165,7 @@ export const PetugasLayout: React.FC = () => {
         </div>
 
         {/* Sidebar Footer with Tentang Link */}
-        <div className="pt-3 border-t border-slate-200 text-xs text-slate-400 space-y-2">
+        <div className="pt-3 border-t border-slate-200 text-sm text-slate-400 space-y-2">
           <button
             onClick={() => setMode('tentang')}
             className="w-full flex items-center gap-1.5 px-2 py-1.5 rounded-lg text-emerald-700 hover:bg-emerald-50 font-bold transition min-h-[44px]"
@@ -168,7 +175,7 @@ export const PetugasLayout: React.FC = () => {
           </button>
 
           <div className="px-2">
-            <span className="text-xs text-slate-500 block font-semibold">
+            <span className="text-sm text-slate-500 block font-semibold">
               Data simulasi untuk demonstrasi
             </span>
             <span className="text-xs text-slate-400">YESC 2026 Prototype</span>
@@ -179,13 +186,13 @@ export const PetugasLayout: React.FC = () => {
       {/* Main Content Pane */}
       <main className="flex-1 max-w-7xl mx-auto w-full">
         {/* Permanent simulation label banner under header */}
-        <div className="bg-amber-50 border-b border-amber-200 px-4 py-2 text-center text-xs font-bold text-amber-900">
+        <div className="bg-amber-50 border-b border-amber-200 px-4 py-2 text-center text-sm font-bold text-amber-900">
           Data simulasi untuk demonstrasi · YESC 2026
         </div>
 
-        <div className="p-4 md:p-8">
+        <div className="p-4 md:p-8 pb-32 md:pb-8">
           {/* Contextual Breadcrumb Top Bar */}
-          <div className="hidden md:flex items-center justify-between pb-4 mb-4 border-b border-slate-200 text-xs text-slate-500">
+          <div className="hidden md:flex items-center justify-between pb-4 mb-4 border-b border-slate-200 text-sm text-slate-500">
             <div className="flex items-center gap-2">
               <span className="text-slate-400">Command Center</span>
               <span>/</span>
@@ -199,7 +206,7 @@ export const PetugasLayout: React.FC = () => {
                 {currentTimeString}
               </span>
               <span className="text-slate-300">|</span>
-              <span className="text-xs bg-slate-100 px-2.5 py-1 rounded-lg text-slate-700 font-medium border border-slate-200">
+              <span className="text-sm bg-slate-100 px-2.5 py-1 rounded-lg text-slate-700 font-medium border border-slate-200">
                 Daops Manggala Agni & TRC BPBD Jambi
               </span>
             </div>

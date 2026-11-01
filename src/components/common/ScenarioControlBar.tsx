@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useApp } from '../../store/appContext';
 import {
   RotateCcw,
@@ -16,10 +16,21 @@ export const ScenarioControlBar: React.FC = () => {
     setScenario,
     resetDemo,
     isTransitioningScenario,
-    transitionProgress
+    transitionProgress,
+    isDemoSheetOpen,
+    setIsDemoSheetOpen
   } = useApp();
 
-  const [isMobileSheetOpen, setIsMobileSheetOpen] = useState<boolean>(false);
+  useEffect(() => {
+    if (!isDemoSheetOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsDemoSheetOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isDemoSheetOpen]);
 
   return (
     <>
@@ -95,113 +106,103 @@ export const ScenarioControlBar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile View: Floating button at bottom-left */}
-      <div className="md:hidden">
-        <button
-          onClick={() => setIsMobileSheetOpen(true)}
-          className="fixed bottom-20 left-3 z-40 px-3 py-1.5 rounded-full bg-white border border-slate-300 text-slate-800 shadow-sm flex items-center gap-1.5 text-[13px] font-bold min-h-[38px] active:scale-95"
-          aria-label="Buka Panel Demo"
+      {/* Mobile Bottom Sheet (triggered via three dots menu in mobile header) */}
+      {isDemoSheetOpen && (
+        <div
+          className="fixed inset-0 z-50 flex flex-col justify-end bg-slate-600/30 animate-in fade-in duration-150"
+          onClick={() => setIsDemoSheetOpen(false)}
         >
-          <Sliders className="w-3.5 h-3.5 text-emerald-700" />
-          <span>Demo</span>
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-700"></span>
-        </button>
-
-        {/* Mobile Bottom Sheet */}
-        {isMobileSheetOpen && (
-          <div className="fixed inset-0 z-50 flex flex-col justify-end bg-black/40 animate-in fade-in duration-150">
-            <div
-              className="w-full bg-white border-t border-slate-200 rounded-t-2xl p-4 shadow-xl space-y-3.5 max-w-lg mx-auto animate-in slide-in-from-bottom-5 duration-200 text-slate-800"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Sheet Header */}
-              <div className="flex items-center justify-between pb-2 border-b border-slate-100">
-                <div className="flex items-center gap-2">
-                  <Sliders className="w-4 h-4 text-emerald-700" />
-                  <span className="font-bold text-[16px] text-slate-900">Panel Demo Simulasi</span>
-                </div>
-                <button
-                  onClick={() => setIsMobileSheetOpen(false)}
-                  className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 min-h-[44px] min-w-[44px] flex items-center justify-center"
-                  aria-label="Tutup Panel"
-                >
-                  <X className="w-5 h-5" />
-                </button>
+          <div
+            className="w-full bg-white border-t border-slate-200 rounded-t-2xl p-4 shadow-xl space-y-3.5 max-w-lg mx-auto animate-in slide-in-from-bottom-5 duration-200 text-slate-800"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Sheet Header */}
+            <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+              <div className="flex items-center gap-2">
+                <Sliders className="w-4 h-4 text-emerald-700" />
+                <span className="font-bold text-[16px] text-slate-900">Panel Demo Simulasi</span>
               </div>
-
-              {/* Disclaimer */}
-              <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-200 text-[13px] text-slate-600">
-                Data sensor dan laporan adalah simulasi untuk demonstrasi prototipe.
-              </div>
-
-              {/* Scenario options */}
-              <div className="space-y-1.5">
-                <label className="text-[13px] font-semibold text-slate-500 block">
-                  Pilih Skenario:
-                </label>
-                <div className="grid grid-cols-3 gap-2">
-                  <button
-                    onClick={() => {
-                      setScenario('normal');
-                      setIsMobileSheetOpen(false);
-                    }}
-                    className={`py-2 px-2 rounded-lg border text-[13px] font-bold flex flex-col items-center justify-center gap-1 transition min-h-[44px] ${
-                      scenario === 'normal'
-                        ? 'bg-emerald-50 border-emerald-600 text-emerald-800'
-                        : 'bg-white border-slate-200 text-slate-700'
-                    }`}
-                  >
-                    <ShieldCheck className="w-4 h-4 text-emerald-700" />
-                    <span>1. Normal</span>
-                  </button>
-
-                  <button
-                    onClick={() => {
-                      setScenario('kemarau');
-                      setIsMobileSheetOpen(false);
-                    }}
-                    className={`py-2 px-2 rounded-lg border text-[13px] font-bold flex flex-col items-center justify-center gap-1 transition min-h-[44px] ${
-                      scenario === 'kemarau'
-                        ? 'bg-amber-50 border-amber-600 text-amber-800'
-                        : 'bg-white border-slate-200 text-slate-700'
-                    }`}
-                  >
-                    <Sun className="w-4 h-4 text-amber-600" />
-                    <span>2. Kemarau</span>
-                  </button>
-
-                  <button
-                    onClick={() => {
-                      setScenario('awas');
-                      setIsMobileSheetOpen(false);
-                    }}
-                    className={`py-2 px-2 rounded-lg border text-[13px] font-bold flex flex-col items-center justify-center gap-1 transition min-h-[44px] ${
-                      scenario === 'awas'
-                        ? 'bg-red-50 border-red-600 text-red-800'
-                        : 'bg-white border-slate-200 text-slate-700'
-                    }`}
-                  >
-                    <Flame className="w-4 h-4 text-red-600" />
-                    <span>3. Awas</span>
-                  </button>
-                </div>
-              </div>
-
-              {/* Reset button */}
               <button
-                onClick={() => {
-                  resetDemo();
-                  setIsMobileSheetOpen(false);
-                }}
-                className="w-full py-2.5 px-3 rounded-lg border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-[14px] font-semibold transition flex items-center justify-center gap-2 min-h-[44px]"
+                onClick={() => setIsDemoSheetOpen(false)}
+                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 min-h-[44px] min-w-[44px] flex items-center justify-center"
+                aria-label="Tutup Panel"
               >
-                <RotateCcw className="w-4 h-4 text-slate-500" />
-                <span>Mulai Ulang Demo</span>
+                <X className="w-5 h-5" />
               </button>
             </div>
+
+            {/* Disclaimer */}
+            <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-200 text-[13px] text-slate-600">
+              Data sensor dan laporan adalah simulasi untuk demonstrasi prototipe.
+            </div>
+
+            {/* Scenario options */}
+            <div className="space-y-1.5">
+              <label className="text-[13px] font-semibold text-slate-500 block">
+                Pilih Skenario:
+              </label>
+              <div className="grid grid-cols-3 gap-2">
+                <button
+                  onClick={() => {
+                    setScenario('normal');
+                    setIsDemoSheetOpen(false);
+                  }}
+                  className={`py-2 px-2 rounded-lg border text-[13px] font-bold flex flex-col items-center justify-center gap-1 transition min-h-[44px] ${
+                    scenario === 'normal'
+                      ? 'bg-emerald-50 border-emerald-600 text-emerald-800'
+                      : 'bg-white border-slate-200 text-slate-700'
+                  }`}
+                >
+                  <ShieldCheck className="w-4 h-4 text-emerald-700" />
+                  <span>1. Normal</span>
+                </button>
+
+                <button
+                  onClick={() => {
+                    setScenario('kemarau');
+                    setIsDemoSheetOpen(false);
+                  }}
+                  className={`py-2 px-2 rounded-lg border text-[13px] font-bold flex flex-col items-center justify-center gap-1 transition min-h-[44px] ${
+                    scenario === 'kemarau'
+                      ? 'bg-amber-50 border-amber-600 text-amber-800'
+                      : 'bg-white border-slate-200 text-slate-700'
+                  }`}
+                >
+                  <Sun className="w-4 h-4 text-amber-600" />
+                  <span>2. Kemarau</span>
+                </button>
+
+                <button
+                  onClick={() => {
+                    setScenario('awas');
+                    setIsDemoSheetOpen(false);
+                  }}
+                  className={`py-2 px-2 rounded-lg border text-[13px] font-bold flex flex-col items-center justify-center gap-1 transition min-h-[44px] ${
+                    scenario === 'awas'
+                      ? 'bg-red-50 border-red-600 text-red-800'
+                      : 'bg-white border-slate-200 text-slate-700'
+                  }`}
+                >
+                  <Flame className="w-4 h-4 text-red-600" />
+                  <span>3. Awas</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Reset button */}
+            <button
+              onClick={() => {
+                resetDemo();
+                setIsDemoSheetOpen(false);
+              }}
+              className="w-full py-2.5 px-3 rounded-lg border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-[14px] font-semibold transition flex items-center justify-center gap-2 min-h-[44px]"
+            >
+              <RotateCcw className="w-4 h-4 text-slate-500" />
+              <span>Mulai Ulang Demo</span>
+            </button>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </>
   );
 };

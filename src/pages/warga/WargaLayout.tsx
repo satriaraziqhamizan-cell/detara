@@ -26,6 +26,15 @@ export const WargaLayout: React.FC = () => {
 
   const unreadAlerts = alerts.filter((a) => !a.acknowledged).length;
 
+  React.useEffect(() => {
+    if (!isLainnyaOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsLainnyaOpen(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isLainnyaOpen]);
+
   const renderContent = () => {
     switch (activeTab) {
       case 'beranda':
@@ -70,8 +79,8 @@ export const WargaLayout: React.FC = () => {
         </div>
       )}
 
-      {/* Main Tab Content with pb-28 (Item 16) */}
-      <main className="max-w-[420px] mx-auto w-full p-4 pb-28 flex-1 box-border">
+      {/* Main Tab Content with pb-32 so floating Demo button does not obscure items */}
+      <main className="max-w-[420px] mx-auto w-full p-4 pb-32 flex-1 box-border">
         {renderContent()}
       </main>
 
@@ -79,7 +88,7 @@ export const WargaLayout: React.FC = () => {
       {isLainnyaOpen && (
         <>
           <div
-            className="fixed inset-0 z-40 bg-black/30"
+            className="fixed inset-0 z-40 bg-slate-600/30"
             onClick={() => setIsLainnyaOpen(false)}
           />
           <div className="fixed bottom-16 inset-x-0 z-50 max-w-[420px] mx-auto bg-white border border-slate-200 rounded-t-2xl shadow-xl p-4 space-y-2 animate-in slide-in-from-bottom-4 duration-150">

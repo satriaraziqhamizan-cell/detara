@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../store/authContext';
 import {
   X,
@@ -35,6 +35,17 @@ export const AuthModal: React.FC<AuthModalProps> = ({ onOpenPrivacyPolicy }) => 
   const [village, setVillage] = useState<string>('Dendang');
   const [agreedPrivacy, setAgreedPrivacy] = useState<boolean>(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!isLoginModalOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        closeLoginModal();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isLoginModalOpen, closeLoginModal]);
 
   if (!isLoginModalOpen) return null;
 
@@ -87,8 +98,14 @@ export const AuthModal: React.FC<AuthModalProps> = ({ onOpenPrivacyPolicy }) => 
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 overflow-y-auto">
-      <div className="w-full max-w-[420px] rounded-xl bg-white border border-slate-200 text-slate-800 shadow-lg overflow-hidden my-auto animate-in zoom-in-95 duration-150">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-slate-600/30 p-4 overflow-y-auto animate-in fade-in duration-150"
+      onClick={closeLoginModal}
+    >
+      <div
+        className="w-full max-w-[420px] rounded-xl bg-white border border-slate-200 text-slate-800 shadow-lg overflow-hidden my-auto animate-in zoom-in-95 duration-150"
+        onClick={(e) => e.stopPropagation()}
+      >
         {/* Header */}
         <div className="p-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
           <div className="flex items-center gap-2.5">

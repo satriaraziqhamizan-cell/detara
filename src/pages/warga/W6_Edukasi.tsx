@@ -15,6 +15,15 @@ export const W6_Edukasi: React.FC = () => {
   const { setMode } = useApp();
   const [selectedArticle, setSelectedArticle] = useState<EducationArticle | null>(null);
 
+  React.useEffect(() => {
+    if (!selectedArticle) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setSelectedArticle(null);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedArticle]);
+
   return (
     <div className="space-y-4 text-[15px] text-slate-800">
       <div>
@@ -26,8 +35,14 @@ export const W6_Edukasi: React.FC = () => {
 
       {/* Selected Article Detail Modal */}
       {selectedArticle && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-          <div className="w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-xl bg-white p-5 shadow-lg border border-slate-200 text-slate-800">
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-600/30 p-4 animate-in fade-in duration-150"
+          onClick={() => setSelectedArticle(null)}
+        >
+          <div
+            className="w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-xl bg-white p-5 shadow-lg border border-slate-200 text-slate-800"
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="flex items-center justify-between pb-2 border-b border-slate-100">
               <span className="text-[13px] font-semibold text-emerald-700">
                 {selectedArticle.category} · {selectedArticle.readTime}
@@ -35,6 +50,7 @@ export const W6_Edukasi: React.FC = () => {
               <button
                 onClick={() => setSelectedArticle(null)}
                 className="text-slate-400 hover:text-slate-600 p-1 text-[16px] font-bold min-h-[44px] min-w-[44px] flex items-center justify-center"
+                aria-label="Tutup"
               >
                 ✕
               </button>
@@ -65,7 +81,7 @@ export const W6_Edukasi: React.FC = () => {
 
             <button
               onClick={() => setSelectedArticle(null)}
-              className="w-full py-2.5 rounded-lg bg-slate-800 text-white text-[14px] font-semibold hover:bg-slate-700 min-h-[44px]"
+              className="w-full py-2.5 rounded-lg bg-emerald-700 text-white text-[14px] font-semibold hover:bg-emerald-800 min-h-[44px] transition"
             >
               Tutup artikel
             </button>

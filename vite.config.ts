@@ -12,8 +12,7 @@ export default defineConfig(() => {
       VitePWA({
         registerType: 'autoUpdate',
         includeAssets: [
-          'favicon.ico',
-          'icon.svg',
+          'logo.png',
           'apple-touch-icon.png',
           'offline.html',
           'fonts/fonts.css',
@@ -25,7 +24,7 @@ export default defineConfig(() => {
           short_name: 'DETARA',
           description: 'Sistem Peringatan Dini Karhutla Berbasis IoT, Edge AI, dan SIG di Jambi (Prototipe YESC 2026)',
           theme_color: '#15803d',
-          background_color: '#0f172a',
+          background_color: '#ffffff',
           display: 'standalone',
           orientation: 'portrait-primary',
           start_url: '/',
