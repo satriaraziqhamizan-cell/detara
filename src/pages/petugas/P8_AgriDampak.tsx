@@ -25,7 +25,7 @@ export const P8_AgriDampak: React.FC = () => {
   const subthemes = [
     {
       id: 'env',
-      title: '1. Environmental Sustainability (Subtema Utama)',
+      title: '1. Environmental Sustainability (Fokus Lingkungan)',
       sdgs: 'SDG 13 (Aksi Iklim) & SDG 15 (Ekosistem Darat)',
       icon: Leaf,
       color: 'text-emerald-600 bg-emerald-50  border-emerald-200 ',
@@ -91,7 +91,7 @@ export const P8_AgriDampak: React.FC = () => {
         <div>
           <h1 className="text-xl md:text-2xl font-extrabold text-slate-900  flex items-center gap-2">
             <Leaf className="w-6 h-6 text-emerald-600" />
-            <span>Keterkaitan 6 Subtema YESC 2026 & Estimasi Dampak</span>
+            <span>Keterkaitan 6 Pilar Dampak Inovasi & Estimasi Manfaat</span>
           </h1>
           <p className="text-sm text-slate-500">
             Penjelasan dampak multidimensi pencegahan karhutla: Lingkungan, Kesehatan, Pangan, Ekonomi, Edukasi, dan Ketahanan Wilayah

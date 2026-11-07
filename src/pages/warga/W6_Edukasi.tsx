@@ -151,7 +151,7 @@ export const W6_Edukasi: React.FC = () => {
               Tentang Aplikasi & Tim
             </h3>
             <p className="text-[13px] text-slate-500">
-              Yogyakarta Emerging Scientist Competition (YESC) 2026
+              ThinkLab Coding Competition 2026 – HIMASI UNJA
             </p>
           </div>
         </div>

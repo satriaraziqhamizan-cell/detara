@@ -42,7 +42,7 @@ export const PetugasLayout: React.FC = () => {
     { id: 'laporan', label: 'Laporan & Tugas', code: 'P6', icon: FileCheck, badge: reports.length },
     { id: 'patroli', label: 'Prioritas Patroli', code: 'P7', icon: Compass },
     { id: 'agri', label: 'Advisory & Karbon', code: 'P8', icon: Leaf },
-    { id: 'lomba', label: 'Dokumen YESC 2026', code: 'P9', icon: Award }
+    { id: 'lomba', label: 'Dokumen ThinkLab 2026', code: 'P9', icon: Award }
   ];
 
   const renderActiveView = () => {
@@ -178,7 +178,7 @@ export const PetugasLayout: React.FC = () => {
             <span className="text-sm text-slate-500 block font-semibold">
               Data simulasi untuk demonstrasi
             </span>
-            <span className="text-xs text-slate-400">YESC 2026 Prototype</span>
+            <span className="text-xs text-slate-400">ThinkLab 2026 Prototype</span>
           </div>
         </div>
       </aside>
@@ -187,7 +187,7 @@ export const PetugasLayout: React.FC = () => {
       <main className="flex-1 max-w-7xl mx-auto w-full">
         {/* Permanent simulation label banner under header */}
         <div className="bg-amber-50 border-b border-amber-200 px-4 py-2 text-center text-sm font-bold text-amber-900">
-          Data simulasi untuk demonstrasi · YESC 2026
+          Data simulasi untuk demonstrasi · ThinkLab 2026
         </div>
 
         <div className="p-4 md:p-8 pb-32 md:pb-8">

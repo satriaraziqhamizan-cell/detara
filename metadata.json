@@ -1,6 +1,6 @@
 {
   "name": "DETARA - PWA Peringatan Dini Karhutla Jambi",
-  "description": "Prototipe PWA DETARA untuk YESC 2026: Sistem peringatan dini kebakaran hutan dan lahan berbasis IoT, Edge AI, dan SIG dengan verifikasi berlapis di Jambi.",
+  "description": "Prototipe PWA DETARA untuk ThinkLab Coding Competition 2026 (HIMASI UNJA): Sistem peringatan dini kebakaran hutan dan lahan berbasis IoT, Edge AI, dan SIG dengan verifikasi berlapis di Jambi.",
   "requestFramePermissions": ["geolocation", "camera"],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

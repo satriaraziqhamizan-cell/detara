@@ -115,7 +115,7 @@ export const P4_AnalisisRisiko: React.FC = () => {
             <span>Mesin Analitik & Verifikasi Berlapis (Edge AI)</span>
           </h1>
           <p className="text-sm text-slate-500">
-            Inti Inovasi YESC 2026: Menggabungkan Indeks Risiko Karhutla dengan Skor Kepercayaan Data (Trust Score)
+            Inti Inovasi DETARA: Menggabungkan Indeks Risiko Karhutla dengan Skor Kepercayaan Data (Trust Score)
           </p>
         </div>
 

@@ -22,7 +22,7 @@ export default defineConfig(() => {
           id: '/',
           name: 'DETARA - Karhutla Early Warning',
           short_name: 'DETARA',
-          description: 'Sistem Peringatan Dini Karhutla Berbasis IoT, Edge AI, dan SIG di Jambi (Prototipe YESC 2026)',
+          description: 'Sistem Peringatan Dini Karhutla Berbasis IoT, Edge AI, dan SIG di Jambi (Prototipe ThinkLab 2026)',
           theme_color: '#15803d',
           background_color: '#ffffff',
           display: 'standalone',

@@ -104,11 +104,11 @@ export const TentangScreen: React.FC = () => {
                 </div>
                 <div className="flex justify-between py-1 border-b border-slate-200">
                   <span className="text-slate-500">Ajang Kompetisi:</span>
-                  <strong className="text-slate-900">Yogyakarta Emerging Scientist Competition (YESC) 2026</strong>
+                  <strong className="text-slate-900">ThinkLab Coding Competition 2026 – HIMASI UNJA</strong>
                 </div>
                 <div className="flex justify-between py-1">
-                  <span className="text-slate-500">Subtema Esai:</span>
-                  <strong className="text-emerald-700">Environmental Sustainability</strong>
+                  <span className="text-slate-500">Tema Kompetisi:</span>
+                  <strong className="text-emerald-700">Digital Innovation for a Better Life</strong>
                 </div>
               </div>
             </div>
@@ -120,7 +120,7 @@ export const TentangScreen: React.FC = () => {
                 <span>Tujuan Aplikasi</span>
               </h2>
               <p className="text-sm text-slate-600 leading-relaxed">
-                Menyediakan prototipe fungsional yang dapat langsung diuji coba oleh dewan juri tanpa perlu proses instalasi yang rumit. Aplikasi memperlihatkan siklus respons bencana lengkap:
+                Menyediakan prototipe fungsional yang dapat langsung diuji coba oleh dewan juri tanpa perlu proses instalasi yang rumit. Prototipe ini dikembangkan untuk ThinkLab Coding Competition 2026 (HIMASI UNJA) dengan tema &ldquo;Digital Innovation for a Better Life&rdquo;. Aplikasi memperlihatkan siklus respons bencana lengkap:
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-4 gap-2 text-center text-xs font-bold pt-2">
                 <div className="p-3 bg-emerald-50 text-emerald-800 rounded-xl border border-emerald-200">
@@ -159,7 +159,7 @@ export const TentangScreen: React.FC = () => {
                 <span>Kontak Narahubung Tim</span>
               </h2>
               <p className="text-sm text-slate-600">
-                Untuk keperluan penjurian booth exhibition atau pertanyaan teknis esai, silakan hubungi:
+                Untuk keperluan penjurian ThinkLab atau pertanyaan teknis aplikasi, silakan hubungi:
               </p>
               <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-2 text-sm font-mono">
                 <div className="flex items-center gap-3">

@@ -31,7 +31,7 @@ export const P7_PrioritasPatroli: React.FC = () => {
             <span>Prioritas Patroli Sadar Dampak (Patrol Priority Score)</span>
           </h1>
           <p className="text-sm text-slate-500 mt-1">
-            Inovasi Taktis YESC 2026: Rekomendasi urutan intervensi saat sumber daya armada dan personel terbatas (data simulasi).
+            Inovasi Taktis DETARA: Rekomendasi urutan intervensi saat sumber daya armada dan personel terbatas (data simulasi).
           </p>
         </div>
       </div>
